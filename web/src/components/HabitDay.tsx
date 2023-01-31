@@ -8,21 +8,21 @@ import * as Checkbox from '@radix-ui/react-checkbox';
 import { Check } from 'phosphor-react';
 
 interface HabitDayProps {
-  completed: number
-  amount: number
+  date: Date
+  completed?: number
+  amount?: number
 }
 
-export function HabitDay({ completed, amount }: HabitDayProps) {
+export function HabitDay({ completed = 0, amount = 0 }: HabitDayProps) {
 
-  const completedPercentage = Math.round((completed / amount) * 100)
-
+  const completedPercentage = amount > 0 ? Math.round((completed / amount) * 100) : 0
 
 
   return (
     <Popover.Root>
       <Popover.Trigger
         className={clsx('w-10 h-10 border-2 rounded-lg', {
-          'bg-zinc-900 border-zinc-700': completedPercentage === 60,
+          'bg-zinc-900 border-zinc-800': completedPercentage === 0,
           'bg-violet-900 border-violet-700': completedPercentage > 0 && completedPercentage < 20,
           'bg-violet-800 border-violet-600': completedPercentage >= 20 && completedPercentage < 40,
           'bg-violet-700 border-violet-500': completedPercentage >= 40 && completedPercentage < 60,

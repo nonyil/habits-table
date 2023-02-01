@@ -8,19 +8,27 @@ import { ProgressBar } from './ProgressBar';
 // import { Check } from 'phosphor-react';
 import dayjs from 'dayjs';
 import { HabitsList } from './HabitsList';
+import { useState } from 'react';
 
 interface HabitDayProps {
   date: Date
-  completed?: number
+  DefaultCompleted?: number
   amount?: number
 }
 
-export function HabitDay({ completed = 0, amount = 0, date }: HabitDayProps) {
+export function HabitDay({ DefaultCompleted = 0, amount = 0, date }: HabitDayProps) {
+
+  const [completed, setCompleted] = useState(DefaultCompleted)
 
   const completedPercentage = amount > 0 ? Math.round((completed / amount) * 100) : 0
 
   const dayAndMounth = dayjs(date).format('DD/MM')
   const dayOfWeek = dayjs(date).format('dddd')
+
+
+  function HandleCompletedChanged(completed: number) {
+    setCompleted(completed)
+  }
 
 
   return (
@@ -43,7 +51,7 @@ export function HabitDay({ completed = 0, amount = 0, date }: HabitDayProps) {
 
           <ProgressBar progress={completedPercentage} />
 
-          <HabitsList date={date} />
+          <HabitsList date={date} onCompletedChanged= {HandleCompletedChanged} />
 
           <Popover.Arrow height={8} width={16} className='fill-zinc-900' />
         </Popover.Content>

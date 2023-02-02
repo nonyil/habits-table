@@ -16,7 +16,7 @@ const availableWeekDays = [
 export function NewHabitForm() {
 
   const [title, setTitle] = useState('')
-  const [weekDays, setWeekDays] = useState<Number[]>([])
+  const [weekDays, setWeekDays] = useState<number[]>([])
 
   async function createNewHabit(event: FormEvent) {
     event.preventDefault()
@@ -38,7 +38,7 @@ export function NewHabitForm() {
 
   function handleToggleWeekDay(weekDay: number) {
     if (weekDays.includes(weekDay)) {
-      const weekDaysWithRemovedOne = weekDays.filter((day => day !== weekDay))
+      const weekDaysWithRemovedOne = weekDays.filter(day => day !== weekDay)
 
       setWeekDays(weekDaysWithRemovedOne)
     } else {

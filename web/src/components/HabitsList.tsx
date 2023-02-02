@@ -43,9 +43,9 @@ export function HabitsList({ date, onCompletedChanged }: HabitslistProps) {
   }, [])
 
   async function handleToggleHabit(habitId: string) {
-    await api.patch(`/habits/${habitId}/toggle`)
-
     const isHabitAlredyCompleted = habitsInfo!.completedHabits.includes(habitId)
+    
+    await api.patch(`/habits/${habitId}/toggle`)
 
     let completedHabits: string[] = []
 

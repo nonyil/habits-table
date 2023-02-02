@@ -38,7 +38,7 @@ export function SumaryTable() {
   return (
     <div className="w-full flex ">
       <div className="grid grid-rows-7 grid-flow-row gap-3">
-        {weekDays.map(((weekDay, i) => {
+        {weekDays.map((weekDay, i) => {
           return (
             <div
               key={`${weekDay}-${i}`}
@@ -47,11 +47,11 @@ export function SumaryTable() {
               {weekDay}
             </div>
           )
-        }))}
+        })}
       </div>
 
       <div className="grid grid-rows-7 grid-flow-col gap-3">
-        {summary.length > 0 && summaryDates.map(date => {
+        {summary.length && summaryDates.map((date) => {
           const dayInSummary = summary.find(day => {
             return dayjs(date).isSame(day.date, 'day')
           })
@@ -62,7 +62,7 @@ export function SumaryTable() {
               key={date.toString()}
               date={date}
               amount={dayInSummary?.amount}
-              DefaultCompleted={dayInSummary?.completed}
+              defaultCompleted={dayInSummary?.completed}
             />
           )
         })}
